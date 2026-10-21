@@ -1,4 +1,4 @@
-# Proyecto Final - PPIII
+# Proyecto Final - Desarrollo de Sistemas Web (BackEnd) / Desarrollo de Sistemas Web (FrontEnd)
 
 **Integrantes del grupo:**
 - Contreras, Axel 
