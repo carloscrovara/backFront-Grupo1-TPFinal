@@ -1,1 +1,39 @@
+# Dependency directories
 node_modules/
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example
+
+# VSCode settings
+.vscode/
+.vscode-test
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build output
+dist/
+build/
+
+# NPM cache directory
+.npm
+
+# Eslint cache
+.eslintcache
