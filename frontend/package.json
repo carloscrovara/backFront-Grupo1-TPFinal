@@ -1,6 +1,6 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
+  "name": "frontend-grupo1-tpfinal",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
