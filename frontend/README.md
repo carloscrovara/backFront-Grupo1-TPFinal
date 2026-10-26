@@ -7,9 +7,9 @@
 - Dillon, Facundo 
 - Mac Donald, Maximiliano 
 
-**Materias:** Desarrollo de Sistemas Web (FrontEnd)
+**Materia:** Desarrollo de Sistemas Web (FrontEnd)
 
-**Profesores:** Balbuena, Federico 
+**Profesor:** Balbuena, Federico 
 
 **Año de cursada:** 2026
 
