@@ -1,18 +1,30 @@
-##Get Health check
-GET http://127.0.0.1:3000/api/health/ HTTP/1.1
+@baseUrl = http://127.0.0.1:3000/api
 
-####
+### Health check
+GET {{baseUrl}}/health/ HTTP/1.1
 
-##Esta es la url con método Get de prueba de XXX
-GET http://127.0.0.1:3000/api/restoURL/ HTTP/1.1
+### Listar todos
+GET {{baseUrl}}/items
 
-####
+### Obtener uno (reemplazar el id)
+GET {{baseUrl}}/items/id
 
-##Esta es la url con método POST de prueba de XXX
-POST http://127.0.0.1:3000/api/restoUrl HTTP/1.1
+### Crear
+POST {{baseUrl}}/items
 Content-Type: application/json
 
 {
-    "id": 5,
-    "nombre": "XXX",
+    "nombre": "Ejemplo 1",
+    "descripcion": "Dato de prueba"
 }
+
+### Actualizar
+PUT {{baseUrl}}/items/id
+Content-Type: application/json
+
+{
+    "nombre": "Ejemplo modificado"
+}
+
+### Eliminar
+DELETE {{baseUrl}}/items/id
