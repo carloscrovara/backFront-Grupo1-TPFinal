@@ -1,3 +1,8 @@
+##Get Health check
+GET http://127.0.0.1:3000/api/health/ HTTP/1.1
+
+####
+
 ##Esta es la url con método Get de prueba de XXX
 GET http://127.0.0.1:3000/api/restoURL/ HTTP/1.1
 
