@@ -1,12 +1,13 @@
-// Conecta a DB
-const config = require('./config');
+const mongoose = require('mongoose')
+const config = require('./config')
 
 async function conectar() {
     try {
-        console.log('DB conectada');
+        await mongoose.connect(config.uri)
+        console.log("MongoDB conectado")
     } catch (err) {
-        console.error('Error de conexión a db:', err.message);
+        console.error("Error de conexión a MongoDB:", err.message)
     }
 }
 
-module.exports = conectar;
+module.exports = conectar

@@ -1,2 +1,3 @@
-// Parámetros de conexión a DB
 require('dotenv').config();
+
+module.exports = { uri: process.env.MONGODB_URI }
