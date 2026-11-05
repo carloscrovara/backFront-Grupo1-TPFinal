@@ -3,6 +3,7 @@ const express = require('express')
 const cors = require('cors');
 
 const healthRouter = require('./Routers/healthRouter');
+const ingredienteRouter = require('./Routers/ingredienteRouter');
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 //Routers:
 app.use('/api/health', healthRouter);
+app.use('/api/ingredientes', ingredienteRouter);
 
 app.listen(PORT, HOSTNAME, () => {
     console.log(`El servidor está corriendo en http://${HOSTNAME}:${PORT}`)
