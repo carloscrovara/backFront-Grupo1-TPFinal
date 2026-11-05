@@ -7,6 +7,33 @@ GET {{baseUrl}}/health/ HTTP/1.1
 
 #####################################################
 ### Ingrediente
+### Listar todos los ingredientes
+GET {{baseUrl}}/ingredientes HTTP/1.1
+
+### Obtener un ingrediente (reemplazar el id)
+GET {{baseUrl}}/ingredientes/ID HTTP/1.1
+
+### Crear ingrediente
+POST {{baseUrl}}/ingredientes HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Harina",
+  "unidadMedida": "gramos",
+  "calorias": 364
+}
+
+### Actualizar ingrediente (PATCH: solo los campos que cambian)
+PATCH {{baseUrl}}/ingredientes/ID HTTP/1.1
+Content-Type: application/json
+
+{
+  "calorias": 350
+}
+
+### Eliminar ingrediente
+DELETE {{baseUrl}}/ingredientes/ID HTTP/1.1
+
 #####################################################
 
 
