@@ -23,9 +23,38 @@ GET {{baseUrl}}/health/ HTTP/1.1
 #####################################################
 ### Receta
 #####################################################
+### Listar todas las recetas
+GET {{baseUrl}}/recetas HTTP/1.1
 
+### Obtener una receta (reemplazar el id)
+GET {{baseUrl}}/recetas/ID HTTP/1.1
+
+### Crear receta (reemplazar los ids de ingredientes, autor y categoria)
+POST {{baseUrl}}/recetas HTTP/1.1
+Content-Type: application/json
+
+{
+  "titulo": "Tarta de zapallitos",
+  "descripcion": "Tarta salada al horno. 2 zapallitos, 3 huevos y 200 g de harina.",
+  "tiempoPreparacion": 50,
+  "porciones": 6,
+  "dificultad": "facil",
+  "ingredientes": ["ID_INGREDIENTE_1", "ID_INGREDIENTE_2"],
+  "autor": "ID_AUTOR",
+  "categoria": "ID_CATEGORIA"
+}
+
+### Actualizar receta (PATCH: solo los campos que cambian)
+PATCH {{baseUrl}}/recetas/ID HTTP/1.1
+Content-Type: application/json
+
+{
+  "porciones": 8
+}
+
+### Eliminar receta
+DELETE {{baseUrl}}/recetas/ID
 
 #####################################################
 ### Menu
 #####################################################
-
