@@ -7,6 +7,7 @@ GET {{baseUrl}}/health/ HTTP/1.1
 
 #####################################################
 ### Ingrediente
+#####################################################
 ### Listar todos los ingredientes
 GET {{baseUrl}}/ingredientes HTTP/1.1
 
@@ -35,12 +36,34 @@ Content-Type: application/json
 DELETE {{baseUrl}}/ingredientes/ID HTTP/1.1
 
 #####################################################
-
-
-#####################################################
 ### Autor
 #####################################################
+### Listar todos los autores
+GET {{baseUrl}}/autores HTTP/1.1
 
+### Obtener un autor (reemplazar el id)
+GET {{baseUrl}}/autores/ID HTTP/1.1
+
+### Crear autor
+POST {{baseUrl}}/autores HTTP/1.1
+Content-Type: application/json
+
+{
+  "apellido": "Silva",
+  "nombre": "Ana",
+  "pais": "Mexico"
+}
+
+### Actualizar autor (PATCH: solo los campos que cambian)
+PATCH {{baseUrl}}/autores/ID HTTP/1.1
+Content-Type: application/json
+
+{
+  "pais": "Uruguay"
+}
+
+### Eliminar autor
+DELETE {{baseUrl}}/autores/ID HTTP/1.1
 
 #####################################################
 ### Categoria
@@ -49,7 +72,7 @@ DELETE {{baseUrl}}/ingredientes/ID HTTP/1.1
 GET {{baseUrl}}/categorias HTTP/1.1
 
 ### Obtener una categoría (reemplazar el id)
-GET {{baseUrl}}/categorias/6aed43de9983940f621c3387 HTTP/1.1
+GET {{baseUrl}}/categorias/ID HTTP/1.1
 
 ### Crear categoría
 POST {{baseUrl}}/categorias HTTP/1.1
@@ -61,7 +84,7 @@ Content-Type: application/json
 }
 
 ### Actualizar categoría (PATCH: solo los campos que cambian)
-PATCH {{baseUrl}}/categorias/6aed42949983940f621c3384 HTTP/1.1
+PATCH {{baseUrl}}/categorias/ID HTTP/1.1
 Content-Type: application/json
 
 {
@@ -69,7 +92,7 @@ Content-Type: application/json
 }
 
 ### Eliminar categoría
-DELETE {{baseUrl}}/categorias/6aed42949983940f621c3384 HTTP/1.1
+DELETE {{baseUrl}}/categorias/ID HTTP/1.1
 
 #####################################################
 ### Receta
