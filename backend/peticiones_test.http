@@ -45,7 +45,31 @@ DELETE {{baseUrl}}/ingredientes/ID HTTP/1.1
 #####################################################
 ### Categoria
 #####################################################
+### Listar todas las categorías
+GET {{baseUrl}}/categorias HTTP/1.1
 
+### Obtener una categoría (reemplazar el id)
+GET {{baseUrl}}/categorias/6aed43de9983940f621c3387 HTTP/1.1
+
+### Crear categoría
+POST {{baseUrl}}/categorias HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Panaderia",
+  "descripcion": "Cocinando para vos hace 25 años"
+}
+
+### Actualizar categoría (PATCH: solo los campos que cambian)
+PATCH {{baseUrl}}/categorias/6aed42949983940f621c3384 HTTP/1.1
+Content-Type: application/json
+
+{
+  "descripcion": "Tartas dulces y saladas"
+}
+
+### Eliminar categoría
+DELETE {{baseUrl}}/categorias/6aed42949983940f621c3384 HTTP/1.1
 
 #####################################################
 ### Receta
