@@ -132,3 +132,29 @@ DELETE {{baseUrl}}/recetas/ID
 #####################################################
 ### Menu
 #####################################################
+### Listar todos los menús
+GET {{baseUrl}}/menus HTTP/1.1
+
+### Obtener un menú (reemplazar el id)
+GET {{baseUrl}}/menus/ID HTTP/1.1
+
+### Crear menú (reemplazar los ids de recetas)
+POST {{baseUrl}}/menus HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Almuerzo liviano",
+  "tipoComida": "almuerzo",
+  "recetas": ["ID_RECETA_1", "ID_RECETA_2"]
+}
+
+### Actualizar menú (PATCH: solo los campos que cambian)
+PATCH {{baseUrl}}/menus/ID HTTP/1.1
+Content-Type: application/json
+
+{
+  "tipoComida": "cena"
+}
+
+### Eliminar menú
+DELETE {{baseUrl}}/menus/ID HTTP/1.1
