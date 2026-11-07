@@ -7,6 +7,7 @@ const recetaRouter = require('./Routers/recetaRouter')
 const ingredienteRouter = require('./Routers/ingredienteRouter')
 const categoriaRouter = require('./Routers/categoriaRouter')
 const autorRouter = require('./Routers/autorRouter')
+const menuRouter = require('./Routers/menuRouter')
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.use('/api/recetas', recetaRouter)
 app.use('/api/ingredientes', ingredienteRouter)
 app.use('/api/categorias', categoriaRouter)
 app.use('/api/autores', autorRouter)
+app.use('/api/menus', menuRouter)
 
 app.listen(PORT, HOSTNAME, () => {
     console.log(`El servidor está corriendo en http://${HOSTNAME}:${PORT}`)
