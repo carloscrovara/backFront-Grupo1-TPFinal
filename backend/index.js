@@ -17,7 +17,6 @@ const PORT = 3000
 app.use(cors({ origin: 'http://localhost:4200' }))
 app.use(express.json())
 
-//Routers:
 app.use('/api/health', healthRouter)
 app.use('/api/recetas', recetaRouter)
 app.use('/api/ingredientes', ingredienteRouter)
