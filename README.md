@@ -1,15 +1,15 @@
 # Proyecto Final - Desarrollo de Sistemas Web (BackEnd) / Desarrollo de Sistemas Web (FrontEnd)
 
 **Integrantes del grupo:**
-- Contreras, Axel 
-- Crovara, Carlos 
+- Contreras, Axel
+- Crovara, Carlos
 - D'Arena, Débora
 - Dillon, Facundo 
-- Mac Donald, Maximiliano 
+- Mac Donald, Maximiliano
 
 **Materias:** Desarrollo de Sistemas Web (BackEnd) / Desarrollo de Sistemas Web (FrontEnd)
 
-**Profesores:** Zammataro, Gustavo y Balbuena, Federico 
+**Profesores:** Zammataro, Gustavo y Balbuena, Federico
 
 **Año de cursada:** 2026
 
@@ -62,6 +62,26 @@ npm start
 ```bash
 cd backend
 npm run seed
+```
+
+## Estructura
+
+```
+backend/
+├── database/
+│   ├── config.js            ← parámetros de conexión
+│   ├── conexion.js          ← conecta a MongoDB; la llama cada Repository
+│   └── seed.js              ← set de datos de prueba
+├── Routers/                 ← maneja enrutamiento de las solicitudes
+├── Controllers/             ← expone la funcionalidad a clientes externos
+├── Services/                ← lógica de negocio
+├── Repositories/            ← único acceso a la BD
+│   └── model/               ← schemas de Mongoose
+├── index.js                 ← crea el servidor, monta los routers y arranca
+├── package.json             ← dependencias y scripts
+├── .gitignore               ← archivos excluidos del repositorio
+├── peticiones_test.http     ← pruebas de todos los endpoints (REST Client)
+└── .env                     ← variables de entorno
 ```
 
 ## Endpoints disponibles

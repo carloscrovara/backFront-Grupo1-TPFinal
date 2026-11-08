@@ -19,9 +19,9 @@ POST {{baseUrl}}/ingredientes HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Harina",
+  "nombre": "Calabaza",
   "unidadMedida": "gramos",
-  "calorias": 364
+  "calorias": 26
 }
 
 ### Actualizar ingrediente (PATCH: solo los campos que cambian)
@@ -29,7 +29,7 @@ PATCH {{baseUrl}}/ingredientes/ID HTTP/1.1
 Content-Type: application/json
 
 {
-  "calorias": 350
+  "calorias": 30
 }
 
 ### Eliminar ingrediente
@@ -79,8 +79,8 @@ POST {{baseUrl}}/categorias HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Panaderia",
-  "descripcion": "Panes, facturas y masas horneadas"
+  "nombre": "Sopas",
+  "descripcion": "Sopas y caldos calientes"
 }
 
 ### Actualizar categoría (PATCH: solo los campos que cambian)
@@ -88,7 +88,7 @@ PATCH {{baseUrl}}/categorias/ID HTTP/1.1
 Content-Type: application/json
 
 {
-  "descripcion": "Tartas dulces y saladas"
+  "descripcion": "Sopas, cremas y caldos para el invierno"
 }
 
 ### Eliminar categoría
@@ -108,11 +108,11 @@ POST {{baseUrl}}/recetas HTTP/1.1
 Content-Type: application/json
 
 {
-  "titulo": "Tarta de zapallitos",
-  "descripcion": "Tarta salada al horno. 2 zapallitos, 3 huevos y 200 g de harina.",
-  "tiempoPreparacion": 50,
-  "porciones": 6,
-  "dificultad": "facil",
+  "titulo": "Sopa de calabaza",
+  "descripcion": "Crema de calabaza asada. 500 g de calabaza, 1 cebolla y 1 litro de caldo.",
+  "tiempoPreparacion": 40,
+  "porciones": 4,
+  "dificultad": "media",
   "ingredientes": ["ID_INGREDIENTE_1", "ID_INGREDIENTE_2"],
   "autor": "ID_AUTOR",
   "categoria": "ID_CATEGORIA"
@@ -123,11 +123,11 @@ PATCH {{baseUrl}}/recetas/ID HTTP/1.1
 Content-Type: application/json
 
 {
-  "porciones": 8
+  "porciones": 5
 }
 
 ### Eliminar receta
-DELETE {{baseUrl}}/recetas/ID
+DELETE {{baseUrl}}/recetas/ID HTTP/1.1
 
 #####################################################
 ### Menu
@@ -143,8 +143,8 @@ POST {{baseUrl}}/menus HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Almuerzo liviano",
-  "tipoComida": "almuerzo",
+  "nombre": "Menu de invierno",
+  "tipoComida": "merienda",
   "recetas": ["ID_RECETA_1", "ID_RECETA_2"]
 }
 
@@ -153,7 +153,7 @@ PATCH {{baseUrl}}/menus/ID HTTP/1.1
 Content-Type: application/json
 
 {
-  "tipoComida": "cena"
+  "tipoComida": "desayuno"
 }
 
 ### Eliminar menú
