@@ -49,9 +49,9 @@ POST {{baseUrl}}/autores HTTP/1.1
 Content-Type: application/json
 
 {
-  "apellido": "Silva",
+  "apellido": "Dominguez",
   "nombre": "Ana",
-  "pais": "Mexico"
+  "pais": "Argentina"
 }
 
 ### Actualizar autor (PATCH: solo los campos que cambian)
@@ -80,7 +80,7 @@ Content-Type: application/json
 
 {
   "nombre": "Panaderia",
-  "descripcion": "Cocinando para vos hace 25 años"
+  "descripcion": "Panes, facturas y masas horneadas"
 }
 
 ### Actualizar categoría (PATCH: solo los campos que cambian)
