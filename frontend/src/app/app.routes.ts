@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
-import { Health } from './components/health/health';
 
 export const routes: Routes = [
-    { path: 'health', component: Health },
-    { path: '', redirectTo: 'recetas', pathMatch: 'full' }
+    { path: '', redirectTo: 'recetas', pathMatch: 'full' },
+    {
+        path: 'health',
+        loadComponent: () => import('./components/health/health')
+            .then(m => m.Health)
+    },
+    { path: '**', redirectTo: 'recetas' }
 ];

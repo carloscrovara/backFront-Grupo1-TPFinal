@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { JsonPipe } from '@angular/common';
-import { Api } from '../../services/api';
+import { ApiService } from '../../services/api-service';
 
 @Component({
   selector: 'app-health',
@@ -11,7 +11,7 @@ import { Api } from '../../services/api';
   imports: [JsonPipe]
 })
 export class Health implements OnInit {
-  private api = inject(Api);
+  private api = inject(ApiService);
   respuesta = signal<unknown>('cargando...');
 
   ngOnInit() {

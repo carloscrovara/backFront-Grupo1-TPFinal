@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Service()
-export class Api {
+export class ApiService {
     private http = inject(HttpClient);
     private baseUrl = environment.apiUrl;
 
