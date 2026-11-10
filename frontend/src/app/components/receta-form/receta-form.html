@@ -1,0 +1,86 @@
+<h2>{{ id ? 'Editar receta' : 'Nueva receta' }}</h2>
+
+@if (error()) {
+<div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (cargando()) {
+<p class="text-muted">Cargando...</p>
+} @else {
+<form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="mb-3">
+        <label class="form-label" for="titulo">Título</label>
+        <input id="titulo" class="form-control" type="text" formControlName="titulo">
+        @if (form.controls.titulo.touched && form.controls.titulo.hasError('required')) {
+        <div class="text-danger small">El título es obligatorio</div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="descripcion">Descripción</label>
+        <textarea id="descripcion" class="form-control" rows="3" formControlName="descripcion"></textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label class="form-label" for="tiempoPreparacion">Tiempo de preparación (min)</label>
+            <input id="tiempoPreparacion" class="form-control" type="number" formControlName="tiempoPreparacion">
+            @if (form.controls.tiempoPreparacion.hasError('min')) {
+            <div class="text-danger small">El tiempo no puede ser negativo</div>
+            }
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label" for="porciones">Porciones</label>
+            <input id="porciones" class="form-control" type="number" formControlName="porciones">
+            @if (form.controls.porciones.hasError('min')) {
+            <div class="text-danger small">Las porciones tienen que ser al menos 1</div>
+            }
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label" for="dificultad">Dificultad</label>
+            <select id="dificultad" class="form-select" formControlName="dificultad">
+                @for (d of dificultades; track d.valor) {
+                <option [value]="d.valor">{{ d.texto }}</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label" for="autor">Autor</label>
+            <select id="autor" class="form-select" formControlName="autor">
+                <option value="">Sin autor</option>
+                @for (a of autores(); track a._id) {
+                <option [value]="a._id">{{ a.apellido }}, {{ a.nombre }}</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label" for="categoria">Categoría</label>
+            <select id="categoria" class="form-select" formControlName="categoria">
+                <option value="">Sin categoría</option>
+                @for (c of categorias(); track c._id) {
+                <option [value]="c._id">{{ c.nombre }}</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ingredientes</label>
+        @for (i of ingredientes(); track i._id) {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" [id]="'ing-' + i._id" [checked]="elegidos().includes(i._id)"
+                (change)="alternar(i._id)">
+            <label class="form-check-label" [attr.for]="'ing-' + i._id">{{ i.nombre }}</label>
+        </div>
+        } @empty {
+        <p class="text-muted small">Todavía no hay ingredientes cargados.</p>
+        }
+    </div>
+
+    <button class="btn btn-primary me-2" type="submit" [disabled]="form.invalid || guardando()">Guardar</button>
+    <a class="btn btn-outline-secondary" routerLink="/recetas">Cancelar</a>
+</form>
+}
