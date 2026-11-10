@@ -1,0 +1,65 @@
+<h2>Detalle de receta</h2>
+
+@if (error()) {
+<div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (receta(); as r) {
+<div class="card mb-3">
+    <div class="card-body">
+        <h3 class="card-title">{{ r.titulo }}</h3>
+        <p class="text-muted">{{ r.descripcion }}</p>
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Categoría</dt>
+            <dd class="col-sm-9">{{ r.categoria?.nombre }}</dd>
+            <dt class="col-sm-3">Autor</dt>
+            <dd class="col-sm-9">
+                @if (r.autor) {
+                {{ r.autor.apellido }}, {{ r.autor.nombre }}
+                }
+            </dd>
+            <dt class="col-sm-3">Dificultad</dt>
+            <dd class="col-sm-9">{{ r.dificultad | dificultad }}</dd>
+            <dt class="col-sm-3">Tiempo</dt>
+            <dd class="col-sm-9">
+                @if (r.tiempoPreparacion != null) {
+                {{ r.tiempoPreparacion }} min
+                }
+            </dd>
+            <dt class="col-sm-3">Porciones</dt>
+            <dd class="col-sm-9">{{ r.porciones }}</dd>
+            <dt class="col-sm-3">Ingredientes</dt>
+            <dd class="col-sm-9">
+                @for (ing of r.ingredientes; track ing._id) {
+                <span class="badge text-bg-secondary me-1">{{ ing.nombre }}</span>
+                } @empty {
+                <span class="text-muted">Sin ingredientes</span>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<a class="btn btn-secondary me-2" routerLink="/recetas">Volver</a>
+<a class="btn btn-warning me-2" [routerLink]="['/recetas', r._id, 'editar']">Editar</a>
+<button class="btn btn-danger" type="button" (click)="confirmando.set(true)">Eliminar</button>
+
+@if (confirmando()) {
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div class="toast show" role="alert">
+        <div class="toast-header">
+            <strong class="me-auto">Confirmar eliminación</strong>
+            <button type="button" class="btn-close" (click)="confirmando.set(false)"></button>
+        </div>
+        <div class="toast-body">
+            ¿Eliminar la receta {{ r.titulo }}?
+            <div class="mt-2 pt-2 border-top text-end">
+                <button class="btn btn-secondary btn-sm me-2" type="button"
+                    (click)="confirmando.set(false)">Cancelar</button>
+                <button class="btn btn-danger btn-sm" type="button" (click)="eliminar(r)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+}
