@@ -21,6 +21,27 @@ export const routes: Routes = [
         loadComponent: () => import('./components/receta-form/receta-form')
             .then(m => m.RecetaForm)
     },
+
+    {
+        path: 'categorias',
+        loadComponent: () => import('./components/categorias-lista/categorias-lista')
+          .then(m => m.CategoriasLista)
+    },
+    {
+        path: 'categorias/nueva',
+        loadComponent: () => import('./components/categoria-form/categoria-form')
+          .then(m => m.CategoriaForm)
+    },
+    {
+        path: 'categorias/:id',
+        loadComponent: () => import('./components/categoria-detalle/categoria-detalle')
+          .then(m => m.CategoriaDetalle)
+    },
+    {
+        path: 'categorias/:id/editar',
+        loadComponent: () => import('./components/categoria-form/categoria-form')
+          .then(m => m.CategoriaForm)
+    },
     { path: '', redirectTo: 'recetas', pathMatch: 'full' },
     { path: '**', redirectTo: 'recetas' }
 ];
