@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">Ingredientes</h2>
+  <a class="btn btn-success" routerLink="/ingredientes/nuevo">Nuevo ingrediente</a>
+</div>
+
+@if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (exito()) {
+  <div class="alert alert-success alert-dismissible">
+    {{ exito() }}
+    <button type="button" class="btn-close" (click)="exito.set('')"></button>
+  </div>
+}
+
+<app-buscador placeholder="Buscar por nombre" (texto)="busqueda.set($event)" />
+
+<table class="table table-striped align-middle">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Unidad de medida</th>
+      <th>Calorías</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (i of filtrados(); track i._id) {
+      <tr>
+        <td>{{ i.nombre | titlecase }}</td>
+        <td>{{ i.unidadMedida }}</td>
+        <td>{{ i.calorias }}</td>
+        <td class="text-end">
+          <a class="btn btn-sm btn-outline-primary me-2" [routerLink]="['/ingredientes', i._id]"
+            >Ver detalle</a
+          >
+          <a
+            class="btn btn-sm btn-outline-warning me-2"
+            [routerLink]="['/ingredientes', i._id, 'editar']"
+            >Editar</a
+          >
+          <button class="btn btn-sm btn-outline-danger" type="button" (click)="aEliminar.set(i)">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="4" class="text-center text-muted">No hay ingredientes para mostrar.</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+@if (aEliminar(); as ingrediente) {
+  <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div class="toast show" role="alert">
+      <div class="toast-header">
+        <strong class="me-auto">Confirmar eliminación</strong>
+        <button type="button" class="btn-close" (click)="aEliminar.set(null)"></button>
+      </div>
+      <div class="toast-body">
+        ¿Eliminar el ingrediente {{ ingrediente.nombre }}?
+        <div class="mt-2 pt-2 border-top text-end">
+          <button class="btn btn-secondary btn-sm me-2" type="button" (click)="aEliminar.set(null)">
+            Cancelar
+          </button>
+          <button class="btn btn-danger btn-sm" type="button" (click)="confirmarEliminar()">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
