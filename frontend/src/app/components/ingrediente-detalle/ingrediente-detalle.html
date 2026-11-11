@@ -1,0 +1,44 @@
+<h2>Detalle de ingrediente</h2>
+
+@if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (ingrediente(); as i) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title">{{ i.nombre | titlecase }}</h3>
+      <p class="mb-1"><strong>Unidad de medida:</strong> {{ i.unidadMedida }}</p>
+      <p class="mb-0"><strong>Calorías:</strong> {{ i.calorias }}</p>
+    </div>
+  </div>
+
+  <a class="btn btn-secondary me-2" routerLink="/ingredientes">Volver</a>
+  <a class="btn btn-warning me-2" [routerLink]="['/ingredientes', i._id, 'editar']">Editar</a>
+  <button class="btn btn-danger" type="button" (click)="confirmando.set(true)">Eliminar</button>
+  @if (confirmando()) {
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+      <div class="toast show" role="alert">
+        <div class="toast-header">
+          <strong class="me-auto">Confirmar eliminación</strong>
+          <button type="button" class="btn-close" (click)="confirmando.set(false)"></button>
+        </div>
+        <div class="toast-body">
+          ¿Eliminar el ingrediente {{ i.nombre }}?
+          <div class="mt-2 pt-2 border-top text-end">
+            <button
+              class="btn btn-secondary btn-sm me-2"
+              type="button"
+              (click)="confirmando.set(false)"
+            >
+              Cancelar
+            </button>
+            <button class="btn btn-danger btn-sm" type="button" (click)="eliminar(i)">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+}
