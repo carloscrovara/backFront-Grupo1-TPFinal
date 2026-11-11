@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="mb-0">Categorías</h2>
+  <a class="btn btn-success" routerLink="/categorias/nueva">Nueva categoría</a>
+</div>
+
+@if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (exito()) {
+  <div class="alert alert-success alert-dismissible">
+    {{ exito() }}
+    <button type="button" class="btn-close" (click)="exito.set('')"></button>
+  </div>
+}
+
+<app-buscador placeholder="Buscar por nombre" (texto)="busqueda.set($event)" />
+
+<table class="table table-striped align-middle">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (c of filtradas(); track c._id) {
+      <tr>
+        <td>{{ c.nombre | titlecase }}</td>
+        <td>{{ c.descripcion }}</td>
+        <td class="text-end">
+          <a class="btn btn-sm btn-outline-primary me-2" [routerLink]="['/categorias', c._id]">Ver detalle</a>
+          <a class="btn btn-sm btn-outline-warning me-2" [routerLink]="['/categorias', c._id, 'editar']">Editar</a>
+          <button class="btn btn-sm btn-outline-danger" type="button" (click)="aEliminar.set(c)">Eliminar</button>
+        </td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="3" class="text-center text-muted">No hay categorías para mostrar.</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+@if (aEliminar(); as categoria) {
+  <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div class="toast show" role="alert">
+      <div class="toast-header">
+        <strong class="me-auto">Confirmar eliminación</strong>
+        <button type="button" class="btn-close" (click)="aEliminar.set(null)"></button>
+      </div>
+      <div class="toast-body">
+        ¿Eliminar la categoría {{ categoria.nombre }}?
+        <div class="mt-2 pt-2 border-top text-end">
+          <button class="btn btn-secondary btn-sm me-2" type="button" (click)="aEliminar.set(null)">Cancelar</button>
+          <button class="btn btn-danger btn-sm" type="button" (click)="confirmarEliminar()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
