@@ -1,0 +1,36 @@
+<h2>{{ id ? 'Editar ingrediente' : 'Nuevo ingrediente' }}</h2>
+
+@if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (cargando()) {
+  <p class="text-muted">Cargando...</p>
+} @else {
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="mb-3">
+      <label class="form-label" for="nombre">Nombre</label>
+      <input id="nombre" class="form-control" type="text" formControlName="nombre" />
+      @if (form.controls.nombre.touched && form.controls.nombre.hasError('required')) {
+        <div class="text-danger small">El nombre es obligatorio</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="unidadMedida">Unidad de medida</label>
+      <input id="unidadMedida" class="form-control" type="text" formControlName="unidadMedida" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="calorias">Calorías</label>
+      <input id="calorias" class="form-control" type="number" formControlName="calorias" />
+      @if (form.controls.calorias.hasError('min')) {
+        <div class="text-danger small">Las calorías no pueden ser negativas</div>
+      }
+    </div>
+    <button class="btn btn-primary me-2" type="submit" [disabled]="form.invalid || guardando()">
+      Guardar
+    </button>
+    <a class="btn btn-outline-secondary" routerLink="/ingredientes">Cancelar</a>
+  </form>
+}
