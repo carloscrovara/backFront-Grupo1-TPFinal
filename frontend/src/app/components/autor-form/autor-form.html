@@ -1,0 +1,39 @@
+<h2>{{ id ? 'Editar autor' : 'Nuevo autor' }}</h2>
+
+@if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (cargando()) {
+  <p class="text-muted">Cargando...</p>
+} @else {
+<form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="mb-3">
+        <label class="form-label" for="apellido">Apellido</label>
+        <input id="apellido" class="form-control" type="text" formControlName="apellido">
+        @if (form.controls.apellido.touched && form.controls.apellido.hasError('required')) {
+        <div class="text-danger small">El apellido es obligatorio</div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="nombre">Nombre</label>
+        <input id="nombre" class="form-control" type="text" formControlName="nombre">
+        @if (form.controls.nombre.touched && form.controls.nombre.hasError('required')) {
+        <div class="text-danger small">El nombre es obligatorio</div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="pais">País</label>
+        <select id="pais" class="form-select" formControlName="pais">
+            @for (p of paises; track p.valor) {
+            <option [value]="p.valor">{{ p.texto }}</option>
+            }
+        </select>
+    </div>
+
+    <button class="btn btn-primary me-2" type="submit" [disabled]="form.invalid || guardando()">Guardar</button>
+    <a class="btn btn-outline-secondary" routerLink="/autores">Cancelar</a>
+</form>
+}
