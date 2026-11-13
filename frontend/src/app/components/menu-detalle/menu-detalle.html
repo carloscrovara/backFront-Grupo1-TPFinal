@@ -1,0 +1,47 @@
+<h2>Detalle de menú</h2>
+
+@if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+}
+
+@if (menu(); as m) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title">{{ m.nombre }}</h3>
+      <p class="mb-2"><strong>Tipo de comida:</strong> {{ m.tipoComida | titlecase }}</p>
+      <p class="mb-1"><strong>Recetas:</strong></p>
+      <div>
+        @for (r of m.recetas; track r._id) {
+          <span class="badge text-bg-secondary me-1">{{ r.titulo }}</span>
+        } @empty {
+          <span class="text-muted">Sin recetas</span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <a class="btn btn-secondary me-2" routerLink="/menus">Volver</a>
+  <a class="btn btn-warning me-2" [routerLink]="['/menus', m._id, 'editar']">Editar</a>
+  <button class="btn btn-danger" type="button" (click)="confirmando.set(true)">Eliminar</button>
+
+  @if (confirmando()) {
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+      <div class="toast show" role="alert">
+        <div class="toast-header">
+          <strong class="me-auto">Confirmar eliminación</strong>
+          <button type="button" class="btn-close" (click)="confirmando.set(false)"></button>
+        </div>
+        <div class="toast-body">
+          ¿Eliminar el menú {{ m.nombre }}?
+          <div class="mt-2 pt-2 border-top text-end">
+            <button class="btn btn-secondary btn-sm me-2" type="button"
+                    (click)="confirmando.set(false)">Cancelar</button>
+            <button class="btn btn-danger btn-sm" type="button"
+                    (click)="eliminar(m)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+}
+
