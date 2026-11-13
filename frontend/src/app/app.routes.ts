@@ -62,6 +62,27 @@ export const routes: Routes = [
         loadComponent: () => import('./components/ingrediente-form/ingrediente-form')
         .then(m => m.IngredienteForm)
     },
+     {
+    path: 'menus',
+    loadComponent: () => import('./components/menus-lista/menus-lista')
+      .then(m => m.MenusLista)
+    },
+    {
+        path: 'menus/nuevo',
+        loadComponent: () => import('./components/menu-form/menu-form')
+        .then(m => m.MenuForm)
+    },
+    {
+        path: 'menus/:id',
+        loadComponent: () => import('./components/menu-detalle/menu-detalle')
+        .then(m => m.MenuDetalle)
+    },
+    {
+        path: 'menus/:id/editar',
+        loadComponent: () => import('./components/menu-form/menu-form')
+        .then(m => m.MenuForm)
+    },
+
     { path: '', redirectTo: 'recetas', pathMatch: 'full' },
     { path: '**', redirectTo: 'recetas' }
 ];
