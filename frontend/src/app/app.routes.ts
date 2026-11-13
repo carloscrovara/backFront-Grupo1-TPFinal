@@ -80,7 +80,27 @@ export const routes: Routes = [
     {
         path: 'menus/:id/editar',
         loadComponent: () => import('./components/menu-form/menu-form')
-        .then(m => m.MenuForm)
+            .then(m => m.MenuForm)
+    },
+    {
+        path: 'autores',
+        loadComponent: () => import('./components/autores-lista/autores-lista')
+            .then(m => m.AutoresLista)
+    },
+    {
+        path: 'autores/nuevo',
+        loadComponent: () => import('./components/autor-form/autor-form')
+            .then(m => m.AutorForm)
+    },
+    {
+        path: 'autores/:id',
+        loadComponent: () => import('./components/autor-detalle/autor-detalle')
+            .then(m => m.AutorDetalle)
+    },
+    {
+        path: 'autores/:id/editar',
+        loadComponent: () => import('./components/autor-form/autor-form')
+            .then(m => m.AutorForm)
     },
 
     { path: '', redirectTo: 'recetas', pathMatch: 'full' },
