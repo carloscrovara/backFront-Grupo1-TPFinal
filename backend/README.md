@@ -2,10 +2,10 @@
 
 **Integrantes del grupo:**
 - Contreras, Axel
-- Crovara, Carlos 
+- Crovara, Carlos
 - D'Arena, Débora
 - Dillon, Facundo
-- Mac Donald, Maximiliano 
+- Mac Donald, Maximiliano
 
 **Materia:** Desarrollo de Sistemas Web (BackEnd)
 
@@ -51,7 +51,7 @@ cd backend
 npm start
 ```
 
-5. El servidor queda escuchando en `http://127.0.0.1:3000`. Para verificar que funciona, probar `GET http://127.0.0.1:3000/api/health`.
+5. El servidor queda escuchando en `http://127.0.0.1:3000`. Para verificar que funciona, probar `GET http://127.0.0.1:3000/api/health`. Por CORS, solo acepta peticiones desde el frontend en `http://localhost:4200`.
 
 6. (Opcional) Cargar el set de datos de prueba (autores, categorías, ingredientes, recetas y menús). **Atención:** esto borra el contenido actual de esas colecciones en la base `recetario`.
 

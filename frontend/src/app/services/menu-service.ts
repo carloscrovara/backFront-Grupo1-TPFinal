@@ -6,7 +6,6 @@ import { RecetaRef, Menu, MenuDatos } from '../models/menu'
 export class MenuService {
   private api = inject(ApiService)
 
-  // Aviso de éxito que se muestra en el listado después de guardar o eliminar
   readonly mensaje = signal('')
 
   listar() {
@@ -25,9 +24,7 @@ export class MenuService {
     return this.api.delete<Menu>(`/menus/${id}`)
   }
 
-  // Opciones para los checkboxes del formulario
   opcionesRecetas() {
     return this.api.get<RecetaRef[]>('/recetas')
   }
 }
-
