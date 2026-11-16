@@ -144,7 +144,7 @@ Content-Type: application/json
 
 {
   "nombre": "Menu de invierno",
-  "tipoComida": "merienda",
+  "tipoComida": "cena",
   "recetas": ["ID_RECETA_1", "ID_RECETA_2"]
 }
 
@@ -153,7 +153,7 @@ PATCH {{baseUrl}}/menus/ID HTTP/1.1
 Content-Type: application/json
 
 {
-  "tipoComida": "desayuno"
+  "tipoComida": "almuerzo"
 }
 
 ### Eliminar menú

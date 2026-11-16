@@ -63,8 +63,6 @@ export class MenuForm implements OnInit {
     })
   }
 
-
-
   private cargarOpciones() {
     this.servicio.opcionesRecetas().subscribe({
       next: lista => this.recetas.set(lista),
@@ -109,4 +107,3 @@ export class MenuForm implements OnInit {
     })
   }
 }
-

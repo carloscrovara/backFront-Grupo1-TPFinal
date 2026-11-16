@@ -2,10 +2,10 @@
 
 **Integrantes del grupo:**
 - Contreras, Axel
-- Crovara, Carlos 
+- Crovara, Carlos
 - D'Arena, Débora
 - Dillon, Facundo
-- Mac Donald, Maximiliano 
+- Mac Donald, Maximiliano
 
 **Materia:** Desarrollo de Sistemas Web (BackEnd)
 
@@ -20,7 +20,7 @@
 ---
 ## Descripción del proyecto
 
-**Recetario** es una aplicación web para gestionar recetas de cocina. Permite cargar, consultar, editar y eliminar recetas, ingredientes, categorías, autores y menús, para tener un recetario organizado en un solo lugar. Desarrollada con **Angular**, **Node.js/Express** y **MongoDB**.
+**Recetario** es una aplicación web para gestionar recetas de cocina. Permite cargar, consultar, editar y eliminar recetas, ingredientes, categorías, autores y menús, para tener un recetario organizado en un solo lugar. Desarrollada con **Angular**, **Node.js/Express** y **MongoDB**. Este directorio contiene el **backend** (Node.js/Express), que expone la API REST consumida por el frontend.
 
 ---
 ## Instrucciones para usar el repositorio
@@ -32,13 +32,13 @@ cd backend
 npm install
 ```
 
-3. Antes de iniciar el servidor, es necesario configurar las variables de entorno. Para esto, crear un archivo `.env` en la carpeta `backend` con el siguiente contenido (dejar comentada la variable local si se desea usar la base de datos de Atlas):
+3. Antes de iniciar el servidor, es necesario configurar las variables de entorno. Para esto, crear un archivo `.env` en la carpeta `backend` con el siguiente contenido (dejar comentada la variable local si se desea usar la base de datos de MongoDB Atlas):
 
 ```env
 # Local
 # MONGODB_URI=uri_conexion_local
 
-# Atlas
+# MongoDB Atlas
 USER_DB_MONGO=usuario_mongo
 PASSWORD_DB_MONGO=pass_mongo
 APP_NAME_MONGO=app_name_mongo
@@ -51,7 +51,7 @@ cd backend
 npm start
 ```
 
-5. El servidor queda escuchando en `http://127.0.0.1:3000`. Para verificar que funciona, probar `GET http://127.0.0.1:3000/api/health`.
+5. El servidor queda escuchando en `http://127.0.0.1:3000`. Para verificar que funciona, probar `GET http://127.0.0.1:3000/api/health`. Por CORS, solo acepta peticiones desde el frontend en `http://localhost:4200`.
 
 6. (Opcional) Cargar el set de datos de prueba (autores, categorías, ingredientes, recetas y menús). **Atención:** esto borra el contenido actual de esas colecciones en la base `recetario`.
 
@@ -59,6 +59,17 @@ npm start
 cd backend
 npm run seed
 ```
+
+---
+## Tecnologías
+
+- **Node.js**: entorno de ejecución de JavaScript en el servidor.
+- **Express**: framework para el servidor y el enrutamiento de la API REST.
+- **MongoDB**: base de datos NoSQL (local o en la nube con MongoDB Atlas).
+- **Mongoose**: modelado de datos (schemas) y acceso a MongoDB.
+- **CORS**: control de los orígenes autorizados a consumir la API.
+- **dotenv**: carga de variables de entorno desde el archivo `.env`.
+- **Nodemon**: reinicio automático del servidor durante el desarrollo.
 
 ---
 ## Estructura

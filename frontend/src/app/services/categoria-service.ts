@@ -6,7 +6,6 @@ import { Categoria } from '../models/categoria'
 export class CategoriaService {
   private api = inject(ApiService)
 
-  // Aviso de éxito que se muestra en el listado después de guardar o eliminar
   readonly mensaje = signal('')
 
   listar() {

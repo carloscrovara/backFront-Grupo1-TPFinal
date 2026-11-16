@@ -4,7 +4,7 @@
 - Contreras, Axel
 - Crovara, Carlos
 - D'Arena, Débora
-- Dillon, Facundo 
+- Dillon, Facundo
 - Mac Donald, Maximiliano
 
 **Materias:** Desarrollo de Sistemas Web (BackEnd) / Desarrollo de Sistemas Web (FrontEnd)
@@ -36,13 +36,13 @@ cd backend
 npm install
 ```
 
-2. Antes de iniciar el servidor, es necesario configurar las variables de entorno. Para esto, crear un archivo `.env` en la carpeta `backend` con el siguiente contenido (dejar comentada la variable local si se desea usar la base de datos de Atlas):
+2. Antes de iniciar el servidor, es necesario configurar las variables de entorno. Para esto, crear un archivo `.env` en la carpeta `backend` con el siguiente contenido (dejar comentada la variable local si se desea usar la base de datos de MongoDB Atlas):
 
 ```env
 # Local
 # MONGODB_URI=uri_conexion_local
 
-# Atlas
+# MongoDB Atlas
 USER_DB_MONGO=usuario_mongo
 PASSWORD_DB_MONGO=pass_mongo
 APP_NAME_MONGO=app_name_mongo
@@ -55,7 +55,7 @@ cd backend
 npm start
 ```
 
-4. El servidor queda escuchando en `http://127.0.0.1:3000`. Para verificar que funciona, probar `GET http://127.0.0.1:3000/api/health`.
+4. El servidor queda escuchando en `http://127.0.0.1:3000`. Para verificar que funciona, probar `GET http://127.0.0.1:3000/api/health`. Por CORS, solo acepta peticiones desde el frontend en `http://localhost:4200`.
 
 5. (Opcional) Cargar el set de datos de prueba (autores, categorías, ingredientes, recetas y menús). **Atención:** esto borra el contenido actual de esas colecciones en la base `recetario`.
 
@@ -63,6 +63,16 @@ npm start
 cd backend
 npm run seed
 ```
+
+## Tecnologías
+
+- **Node.js**: entorno de ejecución de JavaScript en el servidor.
+- **Express**: framework para el servidor y el enrutamiento de la API REST.
+- **MongoDB**: base de datos NoSQL (local o en la nube con MongoDB Atlas).
+- **Mongoose**: modelado de datos (schemas) y acceso a MongoDB.
+- **CORS**: control de los orígenes autorizados a consumir la API.
+- **dotenv**: carga de variables de entorno desde el archivo `.env`.
+- **Nodemon**: reinicio automático del servidor durante el desarrollo.
 
 ## Estructura
 
@@ -107,14 +117,75 @@ En el archivo `backend/peticiones_test.http` hay ejemplos de cada petición (se 
 ---
 # Frontend
 
-_Documentación del frontend pendiente._
-
 ## Instrucciones para levantar el frontend
 
-Para levantar el frontend (Angular), en otra terminal ejecutar lo siguiente. Se abre en `http://localhost:4200`, que es el único origen permitido por CORS en el backend:
+1. Tener el backend levantado (ver sección **Backend**), ya que el frontend lo necesita para obtener y guardar los datos.
+
+2. En **otra terminal**, instalar las dependencias y correr el servidor de desarrollo de Angular. Se abre en `http://localhost:4200`, que es el único origen permitido por CORS en el backend:
 
 ```bash
 cd frontend
 npm install
 ng serve
 ```
+
+3. La URL de la API se configura en `frontend/src/environments/environment.ts` (y `environment.development.ts`). Por defecto apunta a `http://127.0.0.1:3000/api`.
+
+## Tecnologías
+
+- **Angular 22**: componentes standalone, rutas con carga diferida (*lazy loading*) y *signals*.
+- **Bootstrap 5**: estilos y diseño responsive.
+- **RxJS (Observables)**: manejo de las respuestas asíncronas de la API REST, a las que los componentes se suscriben para recibir los datos.
+- **Pipes**: transforman un dato al mostrarlo en la plantilla, sin modificar el dato original. Se usan los de Angular (`uppercase` y `titlecase`) y uno propio (`dificultad`).
+- **TypeScript**.
+
+## Estructura
+
+```
+frontend/
+├── src/
+│   ├── app/
+│   │   ├── components/      ← listado, detalle y formulario de cada recurso, navbar y buscador
+│   │   ├── models/          ← interfaces de los datos
+│   │   ├── services/        ← comunicación con la API (ApiService y un servicio por recurso)
+│   │   ├── pipes/           ← pipe `dificultad` para mostrar con acentos el nivel de dificultad
+│   │   ├── app.routes.ts    ← definición de rutas
+│   │   └── app.config.ts    ← configuración de la aplicación (router y HttpClient)
+│   ├── environments/        ← URL de la API según el entorno
+│   ├── index.html           ← página principal
+│   ├── main.ts              ← arranca la aplicación Angular
+│   └── styles.css           ← estilos globales
+├── angular.json             ← configuración del proyecto Angular
+├── package.json             ← dependencias y scripts
+├── .gitignore               ← archivos excluidos del repositorio
+└── tsconfig*.json           ← configuración de TypeScript
+```
+
+## Rutas disponibles
+
+URL base: `http://localhost:4200`
+
+| Recurso | Ruta | Pantalla | Llamadas a la API |
+|---|---|---|---|
+| Recetas | `/recetas` | Listado | `GET /recetas`, `DELETE /recetas/:id` |
+| Recetas | `/recetas/nueva` | Formulario de alta | `POST /recetas`, `GET /ingredientes`, `GET /autores`, `GET /categorias` |
+| Recetas | `/recetas/:id` | Detalle | `GET /recetas/:id`, `DELETE /recetas/:id` |
+| Recetas | `/recetas/:id/editar` | Formulario de edición | `GET /recetas/:id`, `PATCH /recetas/:id`, `GET /ingredientes`, `GET /autores`, `GET /categorias` |
+| Categorías | `/categorias` | Listado | `GET /categorias`, `DELETE /categorias/:id` |
+| Categorías | `/categorias/nueva` | Formulario de alta | `POST /categorias` |
+| Categorías | `/categorias/:id` | Detalle | `GET /categorias/:id`, `DELETE /categorias/:id` |
+| Categorías | `/categorias/:id/editar` | Formulario de edición | `GET /categorias/:id`, `PATCH /categorias/:id` |
+| Ingredientes | `/ingredientes` | Listado | `GET /ingredientes`, `DELETE /ingredientes/:id` |
+| Ingredientes | `/ingredientes/nuevo` | Formulario de alta | `POST /ingredientes` |
+| Ingredientes | `/ingredientes/:id` | Detalle | `GET /ingredientes/:id`, `DELETE /ingredientes/:id` |
+| Ingredientes | `/ingredientes/:id/editar` | Formulario de edición | `GET /ingredientes/:id`, `PATCH /ingredientes/:id` |
+| Menús | `/menus` | Listado | `GET /menus`, `DELETE /menus/:id` |
+| Menús | `/menus/nuevo` | Formulario de alta | `POST /menus`, `GET /recetas` |
+| Menús | `/menus/:id` | Detalle | `GET /menus/:id`, `DELETE /menus/:id` |
+| Menús | `/menus/:id/editar` | Formulario de edición | `GET /menus/:id`, `PATCH /menus/:id`, `GET /recetas` |
+| Autores | `/autores` | Listado | `GET /autores`, `DELETE /autores/:id` |
+| Autores | `/autores/nuevo` | Formulario de alta | `POST /autores` |
+| Autores | `/autores/:id` | Detalle | `GET /autores/:id`, `DELETE /autores/:id` |
+| Autores | `/autores/:id/editar` | Formulario de edición | `GET /autores/:id`, `PATCH /autores/:id` |
+
+La ruta raíz `/` y cualquier ruta inexistente redirigen a `/recetas`.

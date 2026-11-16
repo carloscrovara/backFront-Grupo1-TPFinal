@@ -6,7 +6,6 @@ import { Ingrediente } from '../models/ingrediente';
 export class IngredienteService {
   private api = inject(ApiService);
 
-  // Aviso de éxito que se muestra en el listado después de guardar o eliminar
   readonly mensaje = signal('');
 
   listar() {

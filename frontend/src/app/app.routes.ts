@@ -21,61 +21,60 @@ export const routes: Routes = [
         loadComponent: () => import('./components/receta-form/receta-form')
             .then(m => m.RecetaForm)
     },
-
     {
         path: 'categorias',
         loadComponent: () => import('./components/categorias-lista/categorias-lista')
-          .then(m => m.CategoriasLista)
+            .then(m => m.CategoriasLista)
     },
     {
         path: 'categorias/nueva',
         loadComponent: () => import('./components/categoria-form/categoria-form')
-          .then(m => m.CategoriaForm)
+            .then(m => m.CategoriaForm)
     },
     {
         path: 'categorias/:id',
         loadComponent: () => import('./components/categoria-detalle/categoria-detalle')
-          .then(m => m.CategoriaDetalle)
+            .then(m => m.CategoriaDetalle)
     },
     {
         path: 'categorias/:id/editar',
         loadComponent: () => import('./components/categoria-form/categoria-form')
-          .then(m => m.CategoriaForm)
+            .then(m => m.CategoriaForm)
     },
     {
         path: 'ingredientes',
         loadComponent: () => import('./components/ingredientes-lista/ingredientes-lista')
-        .then(m => m.IngredientesLista)
+            .then(m => m.IngredientesLista)
     },
     {
         path: 'ingredientes/nuevo',
         loadComponent: () => import('./components/ingrediente-form/ingrediente-form')
-        .then(m => m.IngredienteForm)
+            .then(m => m.IngredienteForm)
     },
     {
         path: 'ingredientes/:id',
         loadComponent: () => import('./components/ingrediente-detalle/ingrediente-detalle')
-        .then(m => m.IngredienteDetalle)
+            .then(m => m.IngredienteDetalle)
     },
     {
         path: 'ingredientes/:id/editar',
         loadComponent: () => import('./components/ingrediente-form/ingrediente-form')
-        .then(m => m.IngredienteForm)
+            .then(m => m.IngredienteForm)
     },
-     {
-    path: 'menus',
-    loadComponent: () => import('./components/menus-lista/menus-lista')
-      .then(m => m.MenusLista)
+    {
+        path: 'menus',
+        loadComponent: () => import('./components/menus-lista/menus-lista')
+            .then(m => m.MenusLista)
     },
     {
         path: 'menus/nuevo',
         loadComponent: () => import('./components/menu-form/menu-form')
-        .then(m => m.MenuForm)
+            .then(m => m.MenuForm)
     },
     {
         path: 'menus/:id',
         loadComponent: () => import('./components/menu-detalle/menu-detalle')
-        .then(m => m.MenuDetalle)
+            .then(m => m.MenuDetalle)
     },
     {
         path: 'menus/:id/editar',
@@ -102,7 +101,6 @@ export const routes: Routes = [
         loadComponent: () => import('./components/autor-form/autor-form')
             .then(m => m.AutorForm)
     },
-
     { path: '', redirectTo: 'recetas', pathMatch: 'full' },
     { path: '**', redirectTo: 'recetas' }
 ];
