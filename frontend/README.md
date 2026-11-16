@@ -60,9 +60,10 @@ ng serve
 ---
 ## Tecnologías
 
-- **Angular 22**: componentes standalone, rutas con carga diferida (*lazy loading*) y señales (*signals*).
+- **Angular 22**: componentes standalone, rutas con carga diferida (*lazy loading*) y *signals*.
 - **Bootstrap 5**: estilos y diseño responsive.
-- **RxJS**: manejo de las peticiones HTTP asíncronas.
+- **RxJS (Observables)**: manejo de las respuestas asíncronas de la API REST, a las que los componentes se suscriben para recibir los datos.
+- **Pipes**: transforman un dato al mostrarlo en la plantilla, sin modificar el dato original. Se usan los de Angular (`uppercase` y `titlecase`) y uno propio (`dificultad`).
 - **TypeScript**.
 
 ---
@@ -75,7 +76,7 @@ frontend/
 │   │   ├── components/      ← listado, detalle y formulario de cada recurso, navbar y buscador
 │   │   ├── models/          ← interfaces de los datos
 │   │   ├── services/        ← comunicación con la API (ApiService y un servicio por recurso)
-│   │   ├── pipes/           ← pipe `dificultad` para mostrar nivel de dificultad de las recetas
+│   │   ├── pipes/           ← pipe `dificultad` para mostrar con acentos el nivel de dificultad
 │   │   ├── app.routes.ts    ← definición de rutas
 │   │   └── app.config.ts    ← configuración de la aplicación (router y HttpClient)
 │   ├── environments/        ← URL de la API según el entorno
@@ -84,6 +85,7 @@ frontend/
 │   └── styles.css           ← estilos globales
 ├── angular.json             ← configuración del proyecto Angular
 ├── package.json             ← dependencias y scripts
+├── .gitignore               ← archivos excluidos del repositorio
 └── tsconfig*.json           ← configuración de TypeScript
 ```
 

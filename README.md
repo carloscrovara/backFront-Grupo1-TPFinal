@@ -36,13 +36,13 @@ cd backend
 npm install
 ```
 
-2. Antes de iniciar el servidor, es necesario configurar las variables de entorno. Para esto, crear un archivo `.env` en la carpeta `backend` con el siguiente contenido (dejar comentada la variable local si se desea usar la base de datos de Atlas):
+2. Antes de iniciar el servidor, es necesario configurar las variables de entorno. Para esto, crear un archivo `.env` en la carpeta `backend` con el siguiente contenido (dejar comentada la variable local si se desea usar la base de datos de MongoDB Atlas):
 
 ```env
 # Local
 # MONGODB_URI=uri_conexion_local
 
-# Atlas
+# MongoDB Atlas
 USER_DB_MONGO=usuario_mongo
 PASSWORD_DB_MONGO=pass_mongo
 APP_NAME_MONGO=app_name_mongo
@@ -63,6 +63,16 @@ npm start
 cd backend
 npm run seed
 ```
+
+## Tecnologías
+
+- **Node.js**: entorno de ejecución de JavaScript en el servidor.
+- **Express**: framework para el servidor y el enrutamiento de la API REST.
+- **MongoDB**: base de datos NoSQL (local o en la nube con MongoDB Atlas).
+- **Mongoose**: modelado de datos (schemas) y acceso a MongoDB.
+- **CORS**: control de los orígenes autorizados a consumir la API.
+- **dotenv**: carga de variables de entorno desde el archivo `.env`.
+- **Nodemon**: reinicio automático del servidor durante el desarrollo.
 
 ## Estructura
 
@@ -123,9 +133,10 @@ ng serve
 
 ## Tecnologías
 
-- **Angular 22**: componentes standalone, rutas con carga diferida (*lazy loading*) y señales (*signals*).
+- **Angular 22**: componentes standalone, rutas con carga diferida (*lazy loading*) y *signals*.
 - **Bootstrap 5**: estilos y diseño responsive.
-- **RxJS**: manejo de las peticiones HTTP asíncronas.
+- **RxJS (Observables)**: manejo de las respuestas asíncronas de la API REST, a las que los componentes se suscriben para recibir los datos.
+- **Pipes**: transforman un dato al mostrarlo en la plantilla, sin modificar el dato original. Se usan los de Angular (`uppercase` y `titlecase`) y uno propio (`dificultad`).
 - **TypeScript**.
 
 ## Estructura
@@ -137,7 +148,7 @@ frontend/
 │   │   ├── components/      ← listado, detalle y formulario de cada recurso, navbar y buscador
 │   │   ├── models/          ← interfaces de los datos
 │   │   ├── services/        ← comunicación con la API (ApiService y un servicio por recurso)
-│   │   ├── pipes/           ← pipe `dificultad` para mostrar nivel de dificultad de las recetas
+│   │   ├── pipes/           ← pipe `dificultad` para mostrar con acentos el nivel de dificultad
 │   │   ├── app.routes.ts    ← definición de rutas
 │   │   └── app.config.ts    ← configuración de la aplicación (router y HttpClient)
 │   ├── environments/        ← URL de la API según el entorno
@@ -146,6 +157,7 @@ frontend/
 │   └── styles.css           ← estilos globales
 ├── angular.json             ← configuración del proyecto Angular
 ├── package.json             ← dependencias y scripts
+├── .gitignore               ← archivos excluidos del repositorio
 └── tsconfig*.json           ← configuración de TypeScript
 ```
 
